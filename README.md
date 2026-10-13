@@ -20,6 +20,14 @@ Perfect for connecting local coding agents like [Pi](https://pi.dev/) to powerfu
 
 ## 🛠️ Setup & Deployment
 
+### 0. Clone this repository and install all dependencies on a local box:
+```
+git clone 
+python3 -m venv venv
+source venv/bin/activate
+pip install modal fastapi uvicorn transformers 
+```
+
 ### 1. Create your API Secret
 Secure your endpoint by creating a Modal secret. Replace `your-super-secure-secret-token-here` with a strong password.
 
@@ -69,7 +77,7 @@ You can interact with the API directly using `curl` or any OpenAI-compatible SDK
 
 **Streaming Request Example:**
 ```bash
-curl -X POST "https://name--qwen-inference-api-fastapi-app.us-east.modal.run/v1/chat/completions" \
+curl -X POST "https://name--qwen-inference-api-fastapi-app.us.modal.run/v1/chat/completions" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer your-token" \
   -d '{
