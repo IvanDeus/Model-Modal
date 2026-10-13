@@ -22,7 +22,7 @@ Perfect for connecting local coding agents like [Pi](https://pi.dev/) to powerfu
 
 ### 0. Clone this repository and install all dependencies on a local box:
 ```
-git clone 
+git clone https://github.com/IvanDeus/Model-Modal.git
 python3 -m venv venv
 source venv/bin/activate
 pip install modal fastapi uvicorn transformers 
