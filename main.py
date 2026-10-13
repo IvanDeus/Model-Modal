@@ -21,20 +21,18 @@ from transformers import pipeline, TextIteratorStreamer
 
 app = modal.App("qwen-inference-api")
 
-# Added 'accelerate' for proper GPU memory mapping with device_map="auto"
 image = modal.Image.debian_slim().uv_pip_install(
     "transformers[torch]", "fastapi", "uvicorn", "accelerate"
 )
 
 auth_scheme = HTTPBearer()
 
-# Global variable to hold the model pipeline
 chatbot = None
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     global chatbot
-    print("Loading Qwen model into GPU memory... This may take a few minutes.")
+    print("Loading LLM into GPU memory...")
     
     chatbot = pipeline(
         "text-generation", 
@@ -42,7 +40,7 @@ async def lifespan(app: FastAPI):
         device_map="auto", 
         torch_dtype="auto"
     )
-    print("Model loaded successfully! Ready to accept requests.")
+    print("LLM loaded successfully!")
     yield
 
 web_app = FastAPI(lifespan=lifespan)
